@@ -68,3 +68,6 @@ La aplicación `app.py` cuenta con 4 módulos de navegación:
 2.  **👥 Perfil de Clientes:** Mapa de dispersión interactivo de los clusters (Oro/Plata/Bronce) con jerarquía visual fija.
 3.  **🚀 Tablero de Oportunidades:** KPIs comerciales filtrables por segmento para identificar productos estrella.
 4.  **🌍 Análisis Geográfico Global:** Mapa de calor mundial y métricas de dominancia para detectar dependencia de mercados (e.g., UK) y nuevas oportunidades.
+
+Para ver el dashboard en funcionamiento se puede visitar: <br>
+https://unicarp-ecommerce-analitica-app-tyrqdy.streamlit.app/
