@@ -7,7 +7,7 @@
 
 ## ✒️ Autores
 
-* **Anotnio Eugenio Daniel** - *Desarrollo del Pipeline ETL*
+* **Antonio Eugenio Daniel** - *Desarrollo del Pipeline ETL*
 * **Domínguez Espinoza Juan Pablo** - *Modelado K-Means y Dashboard Interactivo*
 
 ---
