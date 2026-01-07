@@ -5,6 +5,30 @@ import plotly.express as px
 import plotly.graph_objects as go
 import datetime
 from scipy.fft import fft, fftfreq
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.io as pio
+
+# --- Configuración para Matplotlib y Seaborn ---
+plt.style.use('dark_background') # Fondo negro
+# Paleta personalizada: Dorado, Blanco Hueso, Gris Plata, Ocre
+gold_palette = ['#D4AF37', '#F5F5F0', '#C0C0C0', '#B8860B', '#8A6642']
+
+plt.rcParams.update({
+    'axes.prop_cycle': plt.cycler(color=gold_palette),
+    'axes.facecolor': '#0E1117', # Mismo color de fondo que Streamlit
+    'figure.facecolor': '#0E1117',
+    'grid.color': '#2A2A2A',
+    'text.color': '#FAFAFA'
+})
+
+# --- Configuración para Plotly ---
+pio.templates.default = "plotly_dark" # Tema base oscuro
+# Sobrescribimos la secuencia de colores por defecto
+pio.templates["plotly_dark"].layout.colorway = gold_palette
+# Ajuste fino para que coincida exactamente con el fondo de Streamlit
+pio.templates["plotly_dark"].layout.paper_bgcolor = '#0E1117'
+pio.templates["plotly_dark"].layout.plot_bgcolor = '#0E1117'
 
 # ==========================================
 # 1. CONFIGURACIÓN VISUAL (ESTILO EJECUTIVO)
