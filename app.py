@@ -76,7 +76,7 @@ if df is None:
 # ==========================================
 # 3. BARRA LATERAL (FILTROS DE NEGOCIO)
 # ==========================================
-st.sidebar.header("🎛️ Panel de Control")
+st.sidebar.header("Panel de Control")
 
 # Filtro de Fechas
 min_date = df['InvoiceDate'].min().date()
@@ -135,7 +135,7 @@ page = st.sidebar.radio("📍 Navegación:",
 
 # --- PÁGINA 1: SALUD DE LOS DATOS ---
 if page == "1. Salud de los Datos":
-    st.title("🔍 Diagnóstico de la Información")
+    st.title("Diagnóstico de la Información")
     st.markdown("Validación técnica para asegurar decisiones basadas en datos reales.")
 
     col1, col2 = st.columns(2)
@@ -203,7 +203,7 @@ elif page == "2. Perfil de Clientes (Grupos)":
         
         df_users.columns = ['ID Cliente', 'Grupo', 'Gasto Total ($)', 'Volumen (Unidades)', 'Veces que Compró']
 
-        with st.expander("🛠️ Personalizar Gráfico", expanded=True):
+        with st.expander("Personalizar Gráfico", expanded=True):
             c1, c2 = st.columns(2)
             x_axis = c1.selectbox("Eje Horizontal", ['Veces que Compró', 'Gasto Total ($)', 'Volumen (Unidades)'], index=1)
             y_axis = c2.selectbox("Eje Vertical", ['Veces que Compró', 'Gasto Total ($)', 'Volumen (Unidades)'], index=0)
@@ -240,7 +240,7 @@ elif page == "2. Perfil de Clientes (Grupos)":
 
 # --- PÁGINA 3: OPORTUNIDADES ---
 elif page == "3. Oportunidades de Venta":
-    st.title("🚀 Tablero de Oportunidades")
+    st.title("Tablero de Oportunidades")
     
     selected_groups = st.multiselect("Filtrar por Grupo:", df_filtered['Grupo'].unique(), default=df_filtered['Grupo'].unique())
     df_opp = df_filtered[df_filtered['Grupo'].isin(selected_groups)]
@@ -266,7 +266,7 @@ elif page == "3. Oportunidades de Venta":
             st.plotly_chart(fig, use_container_width=True)
             
         with g2:
-            st.subheader("📦 ¿Qué productos ofrecer?")
+            st.subheader("¿Qué productos ofrecer?")
             prod = df_opp.groupby('Description')['TotalAmount'].sum().sort_values(ascending=False).head(8).reset_index()
             fig = px.bar(prod, x='TotalAmount', y='Description', orientation='h', title="Top Productos", color_discrete_sequence=['#2ecc71'])
             fig.update_layout(yaxis={'categoryorder':'total ascending'}, xaxis_title="Ingresos ($)", yaxis_title="")
@@ -279,7 +279,7 @@ elif page == "3. Oportunidades de Venta":
 
 # --- PÁGINA 4: ANÁLISIS GEOGRÁFICO ---
 elif page == "4. Análisis Geográfico Global":
-    st.title("🌍 Análisis de Mercado por País")
+    st.title("Análisis de Mercado por País")
     st.markdown("Visión completa del rendimiento geográfico.")
 
     if df_filtered.empty:
