@@ -9,29 +9,22 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.io as pio
 
-# --- Configuración para Matplotlib y Seaborn ---
-plt.style.use('dark_background') # Fondo negro
-# Paleta personalizada: Dorado, Blanco Hueso, Gris Plata, Ocre
+# Definimos los colores
 gold_palette = ['#D4AF37', '#F5F5F0', '#C0C0C0', '#B8860B', '#8A6642']
 
-plt.rcParams.update({
-    'axes.prop_cycle': plt.cycler(color=gold_palette),
-    'axes.facecolor': '#0E1117', # Mismo color de fondo que Streamlit
-    'figure.facecolor': '#0E1117',
-    'grid.color': '#2A2A2A',
-    'text.color': '#FAFAFA'
-})
+# 1. Configurar el tema base oscuro
+pio.templates.default = "plotly_dark"
 
-# --- Configuración para Plotly ---
-pio.templates.default = "plotly_dark" # Tema base oscuro
-# Sobrescribimos la secuencia de colores por defecto
+# 2. Forzar los colores en el layout y en los ciclos de color
 pio.templates["plotly_dark"].layout.colorway = gold_palette
-# Ajuste fino para que coincida exactamente con el fondo de Streamlit
-pio.templates["plotly_dark"].layout.paper_bgcolor = '#0E1117'
-pio.templates["plotly_dark"].layout.plot_bgcolor = '#0E1117'
+pio.templates["plotly_dark"].layout.paper_bgcolor = '#0E1117' # Fondo app
+pio.templates["plotly_dark"].layout.plot_bgcolor = '#0E1117'  # Fondo gráfica
+
+# 3. Actualizar la secuencia de colores discreta por defecto de PX
+px.defaults.color_discrete_sequence = gold_palette
 
 # ==========================================
-# 1. CONFIGURACIÓN VISUAL (ESTILO EJECUTIVO)
+# 1. CONFIGURACIÓN VISUAL
 # ==========================================
 st.set_page_config(
     page_title="Monitor de Estrategia Comercial",
@@ -173,8 +166,8 @@ if page == "1. Salud de los Datos":
         fig = px.line(sales_time, x='InvoiceDate', y='TotalAmount', markers=True, 
                       title=f"Evolución de Ingresos ({label_freq.get(freq)})")
         fig.update_layout(xaxis_title="Fecha", yaxis_title="Ventas ($)")
-        fig.update_traces(line_color='#2ecc71', line_width=3)
-        st.plotly_chart(fig, use_container_width=True)
+        fig.update_traces(line_width=3)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
     with col2:
         st.subheader("¿Cada cuánto nos compran? (Ciclicidad)")
@@ -206,8 +199,7 @@ if page == "1. Salud de los Datos":
             fig_fft.update_traces(hovertemplate='<b>Se repite cada: %{customdata[0]:.1f} días</b><br>Intensidad: %{y:.2f}')
             fig_fft.update_xaxes(showticklabels=False, title_text="<-- Patrones Largos (Meses) ............ Patrones Cortos (Días) -->")
             
-            st.plotly_chart(fig_fft, use_container_width=True)
-            st.success("✅ **Conclusión:** Existe un patrón muy fuerte de **compra semanal (cada 7 días)**.")
+            st.plotly_chart(fig_fft, use_container_width=True, theme=None)
         else:
             st.warning("Selecciona un rango de fechas mayor a 2 semanas.")
 
@@ -255,7 +247,7 @@ elif page == "2. Perfil de Clientes (Grupos)":
             )
             # Corrección de bordes para UK
             fig_scatter.update_traces(marker=dict(line=dict(width=0)))
-            st.plotly_chart(fig_scatter, use_container_width=True)
+            st.plotly_chart(fig_scatter, use_container_width=True, theme=None)
 
         with col_stats:
             st.subheader("Resumen por Grupo")
@@ -285,16 +277,40 @@ elif page == "3. Oportunidades de Venta":
         with g1:
             st.subheader("📍 ¿Dónde vender más?")
             geo = df_opp.groupby('Country')['TotalAmount'].sum().sort_values(ascending=False).head(8).reset_index()
-            fig = px.bar(geo, x='TotalAmount', y='Country', orientation='h', title="Top Mercados", color_discrete_sequence=['#3498db'])
+            fig = px.bar(geo, x='TotalAmount', y='Country', orientation='h', title="Top Mercados")
+            fig.update_traces(
+                marker_color='#D4AF37',
+                marker_line_color='#FAFAFA',
+                marker_line_width=1,
+                opacity=0.9
+            )
+
+            fig.update_layout(
+                plot_bgcolor='#0E1117',
+                paper_bgcolor='#0E1117',
+                font_color='#FAFAFA'
+            )
             fig.update_layout(yaxis={'categoryorder':'total ascending'}, xaxis_title="Ingresos ($)", yaxis_title="")
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True, theme=None)
             
         with g2:
             st.subheader("¿Qué productos ofrecer?")
             prod = df_opp.groupby('Description')['TotalAmount'].sum().sort_values(ascending=False).head(8).reset_index()
-            fig = px.bar(prod, x='TotalAmount', y='Description', orientation='h', title="Top Productos", color_discrete_sequence=['#2ecc71'])
+            fig = px.bar(prod, x='TotalAmount', y='Description', orientation='h', title="Top Productos")
+            fig.update_traces(
+                marker_color='#D4AF37',
+                marker_line_color='#FAFAFA',
+                marker_line_width=1,
+                opacity=0.9
+            )
+
+            fig.update_layout(
+                plot_bgcolor='#0E1117',
+                paper_bgcolor='#0E1117',
+                font_color='#FAFAFA'
+            )
             fig.update_layout(yaxis={'categoryorder':'total ascending'}, xaxis_title="Ingresos ($)", yaxis_title="")
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, use_container_width=True, theme=None)
             
         csv = df_opp.to_csv(index=False).encode('utf-8')
         st.download_button("📥 Descargar Listado (CSV)", csv, "listado_clientes.csv", "text/csv")
@@ -342,7 +358,7 @@ elif page == "4. Análisis Geográfico Global":
                 color_continuous_scale='Plasma'
             )
             fig_map.update_geos(showframe=False, projection_type="natural earth")
-            st.plotly_chart(fig_map, use_container_width=True)
+            st.plotly_chart(fig_map, use_container_width=True, theme=None)
 
         with col_bar:
             st.subheader("Ranking de Países")
@@ -356,7 +372,7 @@ elif page == "4. Análisis Geográfico Global":
                 title="Top 15 Mercados"
             )
             fig_bar.update_layout(yaxis={'categoryorder':'total ascending'}, xaxis_title="Ventas ($)", yaxis_title="")
-            st.plotly_chart(fig_bar, use_container_width=True)
+            st.plotly_chart(fig_bar, use_container_width=True, theme=None)
 
 st.markdown("---")
 st.caption("Herramienta de Inteligencia de Negocios | Datos actualizados en tiempo real")
