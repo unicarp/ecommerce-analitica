@@ -1,11 +1,11 @@
-# 📊 E-Commerce Strategic Analytics Suite
+# E-Commerce Strategic Analytics Suite
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?style=for-the-badge&logo=streamlit)
 ![Scikit-Learn](https://img.shields.io/badge/ML-KMeans-orange?style=for-the-badge&logo=scikit-learn)
 ![Plotly](https://img.shields.io/badge/Viz-Plotly-3F4F75?style=for-the-badge&logo=plotly)
 
-## ✒️ Autores
+## Autores
 
 * **Antonio Eugenio Daniel** - *Desarrollo del Pipeline ETL*
 * **Domínguez Espinoza Juan Pablo** - *Modelado K-Means y Dashboard Interactivo*
@@ -13,7 +13,7 @@
 ---
 *Proyecto desarrollado como evaluación final para la asignatura de Analítica y Visualización de Datos.*
 
-## 📖 Descripción del Proyecto
+## Descripción del Proyecto
 
 Este proyecto es una solución integral de **Inteligencia de Negocios (BI) y Ciencia de Datos** diseñada para analizar transacciones de E-Commerce y generar estrategias comerciales basadas en evidencia.
 
@@ -21,7 +21,7 @@ Utilizando una **arquitectura desacoplada**, el sistema procesa datos crudos med
 
 ---
 
-## 🎯 Objetivos y Alcance
+## Objetivos y Alcance
 
 1.  **Diagnóstico de Datos:** Auditoría de calidad y limpieza de registros transaccionales (eliminación de devoluciones y nulos).
 2.  **Detección de Patrones (Fourier):** Validación matemática de ciclos de estacionalidad mediante Transformada de Fourier (FFT).
@@ -30,7 +30,7 @@ Utilizando una **arquitectura desacoplada**, el sistema procesa datos crudos med
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack
 
 * **Lenguaje:** Python
 * **Procesamiento de Datos:** Pandas, NumPy
@@ -41,7 +41,7 @@ Utilizando una **arquitectura desacoplada**, el sistema procesa datos crudos med
 
 ---
 
-## 🧠 Metodología Analítica
+## Metodología Analítica
 
 ### 1. Preprocesamiento (ETL)
 * Limpieza de facturas con prefijo 'C' (Cancelaciones).
@@ -60,14 +60,14 @@ Se segmentó la base de clientes utilizando métricas RFM transformadas logarít
 
 ---
 
-## 📊 Estructura del Dashboard
+## Estructura del Dashboard
 
 La aplicación `app.py` cuenta con 4 módulos de navegación:
 
-1.  **🔍 Salud de los Datos:** Diagnóstico técnico y visualización interactiva del espectro de frecuencias (ciclos de venta).
-2.  **👥 Perfil de Clientes:** Mapa de dispersión interactivo de los clusters (Oro/Plata/Bronce) con jerarquía visual fija.
-3.  **🚀 Tablero de Oportunidades:** KPIs comerciales filtrables por segmento para identificar productos estrella.
-4.  **🌍 Análisis Geográfico Global:** Mapa de calor mundial y métricas de dominancia para detectar dependencia de mercados (e.g., UK) y nuevas oportunidades.
+1.  **Salud de los Datos:** Diagnóstico técnico y visualización interactiva del espectro de frecuencias (ciclos de venta).
+2.  **Perfil de Clientes:** Mapa de dispersión interactivo de los clusters (Oro/Plata/Bronce) con jerarquía visual fija.
+3.  **Tablero de Oportunidades:** KPIs comerciales filtrables por segmento para identificar productos estrella.
+4.  **Análisis Geográfico Global:** Mapa de calor mundial y métricas de dominancia para detectar dependencia de mercados (e.g., UK) y nuevas oportunidades.
 
 Para ver el dashboard en funcionamiento se puede visitar: <br>
 https://unicarp-ecommerce-analitica-app-tyrqdy.streamlit.app/
