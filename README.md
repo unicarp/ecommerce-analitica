@@ -71,3 +71,7 @@ La aplicación `app.py` cuenta con 4 módulos de navegación:
 
 Para ver el dashboard en funcionamiento se puede visitar: <br>
 https://unicarp-ecommerce-analitica-app-tyrqdy.streamlit.app/
+<br><br>
+
+Para ver la presentación técnica se puede visitar: <br>
+https://www.canva.com/design/DAG9rpSjYmM/d7RBwmkWYbLRsrj1aOhc_w/edit?utm_content=DAG9rpSjYmM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
